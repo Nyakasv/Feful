@@ -16,27 +16,30 @@
     <table id="hallgatokTable"></table>
 
     <script>
+
+        var hallgatok = JSON.parse(localStorage.getItem("hallgatokStorage"));
+
         // hallgatok JSON
-        var hallgatok = [
-            {
-                "name": "Elso Hallgato",
-                "neptunIdent": "neptun1",
-                "atlag": 3.14,
-                "aktiv": true
-            },
-            {
-                "name": "Masodik Hallgato",
-                "neptunIdent": "neptun2",
-                "atlag": 4.05,
-                "aktiv": true,
-            },
-            {
-                "name": "Harmadik Hallgato",
-                "neptunIdent": "neptun3",
-                "atlag": 2.84,
-                "aktiv": false
-            }
-        ];
+        //var hallgatok = [
+        //    {
+        //        "name": "Elso Hallgato",
+        //        "neptunIdent": "neptun1",
+        //        "atlag": 3.14,
+        //        "aktiv": true
+        //    },
+        //    {
+        //        "name": "Masodik Hallgato",
+        //        "neptunIdent": "neptun2",
+        //        "atlag": 4.05,
+        //        "aktiv": true,
+        //    },
+        //    {
+        //        "name": "Harmadik Hallgato",
+        //        "neptunIdent": "neptun3",
+        //        "atlag": 2.84,
+        //        "aktiv": false
+        //    }
+        //];
 
         function listing() {
             var hl = document.getElementById("hallgatokTable");
@@ -55,13 +58,17 @@
             var newUserName = document.getElementById("newName").value;
             var newUserNeptun = document.getElementById("newNeptun").value;
 
-            alert(newUserName + newUserNeptun);
+            //alert(newUserName + newUserNeptun);
 
             var newUser = {
                 "name": newUserName, "neptunIdent": newUserNeptun
             };
 
             hallgatok.push(newUser);
+
+            localStorage.setItem("hallgatokStorage", JSON.stringify(hallgatok));
+
+            console.log(JSON.stringify(hallgatok));
 
             listing();
             
