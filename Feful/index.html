@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Index JSON</title>
+</head>
+<body>
+    <div>Új hallgato</div>
+    <input type="text" id="newName" />
+    <input type="text" id="newNeptun" />
+    <button onclick="newUser()">Új!</button>
+    <br />
+    <br />
+
+    <div>Hallgatok: </div>
+    <table id="hallgatokTable"></table>
+
+    <script>
+        // hallgatok JSON
+        var hallgatok = [
+            {
+                "name": "Elso Hallgato",
+                "neptunIdent": "neptun1",
+                "atlag": 3.14,
+                "aktiv": true
+            },
+            {
+                "name": "Masodik Hallgato",
+                "neptunIdent": "neptun2",
+                "atlag": 4.05,
+                "aktiv": true,
+            },
+            {
+                "name": "Harmadik Hallgato",
+                "neptunIdent": "neptun3",
+                "atlag": 2.84,
+                "aktiv": false
+            }
+        ];
+
+        function listing() {
+            var hl = document.getElementById("hallgatokTable");
+            var stringHtml = "";
+
+
+
+            for (var i = 0; i < hallgatok.length; i++) {
+                stringHtml += `<tr><td>${i}</td><td>${hallgatok[i].name}</td><td>${hallgatok[i].aktiv == true ? "Aktív" : "Passzív"}</td></tr>`;
+            }
+
+            hl.innerHTML = stringHtml;
+        }
+
+        function newUser() {
+            var newUserName = document.getElementById("newName").value;
+            var newUserNeptun = document.getElementById("newNeptun").value;
+
+            alert(newUserName + newUserNeptun);
+
+            var newUser = {
+                "name": newUserName, "neptunIdent": newUserNeptun
+            };
+
+            hallgatok.push(newUser);
+
+            listing();
+            
+        }
+
+        listing();
+        
+
+    </script>
+</body>
+</html>
